@@ -1,15 +1,35 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import java.util.ArrayList;
 public class WordPairList {
-    public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+    /** The list of word pairs, initialized by the constructor. */
+    private ArrayList<WordPair> allPairs;
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+    /**
+
+     * Constructs a WordPairList object as described in part (a).
+     * Precondition: words.length >= 2
+     */
+    public WordPairList(String[] words) {
+        allPairs = new ArrayList<WordPair>();
+        for(int i=0; i<words.length-1; i++){
+            for(int ii=i+1; ii<words.length; ii++){
+                WordPair w = new WordPair(words[i], words[ii]);
+                allPairs.add(w);
+            }
         }
+    }
+
+    /**
+     * Returns the number of matches as described in part (b).
+     */
+    public int numMatches() {
+        int matches = 0;
+        for(WordPair w : allPairs){
+            if(w.getFirst().equals(w.getSecond())) matches++;
+        }
+        return matches;
+    }
+
+    public ArrayList<WordPair> getAllPairs(){
+        return allPairs;
     }
 }
